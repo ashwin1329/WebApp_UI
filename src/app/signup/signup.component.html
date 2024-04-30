@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="text-center">
+          <h1>Sign Up</h1>
+        </div>
+        <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+          <div class="mb-3">
+            <label for="exampleInputFullname1" class="form-label"
+              >Full name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputFullname1"
+              formControlName="fullName"
+            />
+            <small
+              *ngIf="
+                fullName!.invalid && (fullName!.dirty || fullName!.touched)
+              "
+              class="text-danger"
+            >
+              <div *ngIf="fullName!.errors?.['required']">
+                *Name is required.
+              </div>
+              <div *ngIf="fullName!.errors?.['pattern']">
+                *Alphabets only allowed
+              </div>
+            </small>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputMobile1" class="form-label"
+              >Mobile number</label
+            >
+            <input
+              type="tel"
+              class="form-control"
+              id="exampleInputMobile1"
+              formControlName="mobile"
+              maxlength="10"
+            />
+            <div>
+              <small
+                class="form-text text-danger"
+                *ngIf="mobile!.errors?.['pattern'] && (mobile!.dirty || mobile!.touched)"
+              >
+                *Mobile number should contain number only
+              </small>
+            </div>
+            <small
+              class="form-text text-danger"
+              *ngIf="mobile!.errors?.['required'] && (mobile!.dirty || mobile!.touched)"
+            >
+              *Mobile number is required
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="mobile!.errors?.['minlength'] && (mobile!.dirty || mobile!.touched)"
+            >
+              *Mobile number should contain 10 digits
+            </small>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"
+              >Email address</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              formControlName="email"
+            />
+            <small
+              *ngIf="email!.invalid && (email!.dirty || email!.touched)"
+              class="text-danger"
+            >
+              <div *ngIf="email!.errors?.['required']">*Email is required.</div>
+              <div *ngIf="email!.errors?.['pattern']">
+                *Email should be valid
+              </div>
+            </small>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Password</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputPassword1"
+              formControlName="password"
+            />
+            <div
+              class="form-text text-danger"
+              *ngIf="password!.errors?.['required'] && (password!.dirty || password!.touched)"
+            >
+              Password is Required
+            </div>
+
+            <div
+              class="form-text text-danger"
+              *ngIf="password!.errors?.['minlength'] || password!.errors?.['maxlength'] && (password!.
+              dirty || password!.touched)"
+            >
+              Password should be at least 6 and at the max 15 characters long.
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+        <a class="text-light mt-2" routerLink="/login"
+          >Already registered? Click to login</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,203 @@
+<nav class="navbar navbar-light bg-info">
+  <div class="container-fluid">
+    <h1 style="color: aliceblue">Employee Table</h1>
+    <div class="d-flex">
+      <button
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        class="btn btn-success"
+        (click)="clickAdd()"
+      >
+        Add Employee
+      </button>
+      
+    </div>
+  </div>
+</nav>
+<table class="table table-striped mt-3">
+  <thead>
+    <tr>
+      <th scope="col">Employee ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email ID</th>
+      <th scope="col">Mobile No.</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of employeeData">
+      <td>{{row.id}}</td>
+      <td>{{ row.firstName }}</td>
+      <td>{{ row.lastName }}</td>
+      <td>{{ row.email }}</td>
+      <td>{{ row.mobile }}</td>
+      <td>{{ row.salary }}</td>
+      <td>
+        <button
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          (click)="dataEdit(row)"
+        >
+          Edit
+        </button>
+        <button class="btn btn-danger mx-3" (click)="deleteEmployeeData(row.id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Employee Details
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="employeeForm">
+          <div class="mb-3">
+            <label class="form-label">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="firstName"
+            />
+            <small
+            *ngIf="
+              firstName!.invalid && (firstName!.dirty || firstName!.touched)
+            "
+            class="text-danger"
+          >
+            <div *ngIf="firstName!.errors?.['required']">
+              *Firstname is required.
+            </div>
+            <div *ngIf="firstName!.errors?.['pattern']">
+              *Alphabets only allowed
+            </div>
+          </small>  
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="lastName"
+            />
+            <small
+            *ngIf="
+              lastName!.invalid && (lastName!.dirty || lastName!.touched)
+            "
+            class="text-danger"
+          >
+            <div *ngIf="lastName!.errors?.['required']">
+              *Lastname is required.
+            </div>
+            <div *ngIf="lastName!.errors?.['pattern']">
+              *Alphabets only allowed
+            </div>
+          </small>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email ID</label>
+            <input type="email" class="form-control" formControlName="email" />
+            <small
+              *ngIf="email!.invalid && (email!.dirty || email!.touched)"
+              class="text-danger"
+            >
+              <div *ngIf="email!.errors?.['required']">*Email is required.</div>
+              <div *ngIf="email!.errors?.['pattern']">
+                *Email should be valid
+              </div>
+            </small>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" maxlength="10" formControlName="mobile" />
+            <div>
+              <small
+                class="form-text text-danger"
+                *ngIf="mobile!.errors?.['pattern'] && (mobile!.dirty || mobile!.touched)"
+              >
+                *Mobile number should contain number only
+              </small>
+            </div>
+            <small
+              class="form-text text-danger"
+              *ngIf="mobile!.errors?.['required'] && (mobile!.dirty || mobile!.touched)"
+            >
+              *Mobile number is required
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="mobile!.errors?.['minlength'] && (mobile!.dirty || mobile!.touched)"
+            >
+              *Mobile number should contain 10 digits
+            </small>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Salary</label>
+            <input type="text" class="form-control" formControlName="salary" />
+              <small
+                class="form-text text-danger"
+                *ngIf="salary!.errors?.['pattern'] && (salary!.dirty || salary!.touched)"
+              >
+                *salary should contain number only
+              </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="salary!.errors?.['required'] && (salary!.dirty || salary!.touched)"
+            >
+              *salary is required
+            </small>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="cancel"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="postEmployeeDetails()"
+          *ngIf="showAdd"
+        >
+          Add
+        </button>
+        <button
+          type="button"
+          *ngIf="showUpdate"
+          class="btn btn-primary"
+          (click)="updateEmployeeDetails()"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

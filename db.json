@@ -1,0 +1,115 @@
+{
+  "posts": [
+    {
+      "firstName": "Ashwin",
+      "lastName": "T",
+      "email": "test@gmail.com",
+      "mobile": "9632587414",
+      "salary": "20000",
+      "id": "fd91"
+    },
+    {
+      "id": "0059",
+      "firstName": "Bala",
+      "lastName": "S",
+      "email": "test@gmail.com",
+      "mobile": "9874561233",
+      "salary": "20000"
+    },
+    {
+      "id": "229d",
+      "firstName": "Nandha",
+      "lastName": "KK",
+      "email": "test@gmail.com",
+      "mobile": "9513578526",
+      "salary": "20000"
+    },
+    {
+      "id": "2b14",
+      "firstName": "Philip",
+      "lastName": "D",
+      "email": "test@gmail.com",
+      "mobile": "9512587536",
+      "salary": "20000"
+    },
+    {
+      "id": "3a6e",
+      "firstName": "Karthik",
+      "lastName": "P",
+      "email": "test@gmail.com",
+      "mobile": "9875478965",
+      "salary": "20000"
+    },
+    {
+      "id": "ba15",
+      "firstName": "Raj",
+      "lastName": "M",
+      "email": "test@gmail.com",
+      "mobile": "9658745896",
+      "salary": "20000"
+    },
+    {
+      "firstName": "Joel sdf",
+      "lastName": "T",
+      "email": "test@gmail.com",
+      "mobile": "9874547854",
+      "salary": "20000",
+      "id": "d652"
+    },
+    {
+      "id": "bb0d",
+      "firstName": "Vikram",
+      "lastName": "C",
+      "email": "vikram@gmail.com",
+      "mobile": "9632584142",
+      "salary": "25000"
+    }
+  ],
+  "signupUsers": [
+    {
+      "id": "2f2b",
+      "fullname": "Ashwinkumar",
+      "email": "aswinkumar8407@gmail.com",
+      "password": "Aswin0596#",
+      "mobile": "6382576440"
+    },
+    {
+      "id": "291b",
+      "fullName": "Ashwinkumar",
+      "email": "aswinkumar8407@gmail.com",
+      "mobile": "6382576440",
+      "password": "aSWIN0596#"
+    },
+    {
+      "id": "4b2a",
+      "fullName": "shalinipriya",
+      "email": "spriya@gmail.com",
+      "mobile": "6382576440",
+      "password": "123654"
+    },
+    {
+      "id": "54a6",
+      "fullName": "Ashwinkumar",
+      "email": "aswinkumar8407@gmail.com",
+      "mobile": "6382576440",
+      "password": "123456"
+    },
+    {
+      "id": "18bd",
+      "fullName": "Ashwinkumar",
+      "email": "aswinkumar8407@gmail.com",
+      "mobile": "6382576440",
+      "password": "123456"
+    },
+    {
+      "id": "edc5",
+      "fullName": "test",
+      "email": "test@gmail.com",
+      "mobile": "9356321544",
+      "password": "123456"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
