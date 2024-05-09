@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { CustomUppercasePipe } from './custom.pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
@@ -15,6 +15,7 @@ import { HeaderComponent } from './header/header.component';
   declarations: [
     AppComponent,
     EmployeeDashboardComponent,
+    CustomUppercasePipe,
     LoginComponent,
     SignupComponent,
     HeaderComponent

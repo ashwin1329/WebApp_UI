@@ -7,6 +7,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     private formbuilder: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private auth: ApiService
   ) {}
 
   ngOnInit(): void {
@@ -44,33 +46,52 @@ export class LoginComponent implements OnInit {
       });
     }
     if (this.loginForm.valid){
-    this.http.get<any>('http://localhost:3000/signupUsers').subscribe(
-      (res) => {
-        const user = res.find((a: any) => {
-          return (
-            a.email === this.loginForm.value.email &&
-            a.password === this.loginForm.value.password
-          );
-        });
-        if (user) {
+      this.auth.login(this.loginForm.value)
+      .subscribe({
+        next:(res)=>{
           this.successSnackBar();
-
           this.loginForm.reset();
-
           this.router.navigate(['dashboard']);
-        } else {
-          this.invalidSnackbar();
+        },
+        error:(err)=>{
+          alert('Something went wrong!!');
         }
-      },
-      (err) => {
-        alert('Something went wrong!!');
-      }
-    );
+      })
+
+
+
+
+
+
+
+
+    // this.http.get<any>('http://localhost:3000/signupUsers').subscribe(
+    //   (res) => {
+    //     const user = res.find((a: any) => {
+    //       return (
+    //         a.email === this.loginForm.value.email &&
+    //         a.password === this.loginForm.value.password
+    //       );
+    //     });
+    //     if (user) {
+    //       this.successSnackBar();
+
+    //       this.loginForm.reset();
+
+    //       this.router.navigate(['dashboard']);
+    //     } else {
+    //       this.invalidSnackbar();
+    //     }
+    //   },
+    //   (err) => {
+    //     alert('Something went wrong!!');
+    //   }
+    // );
   }
 }
 
-successSnackBar(){
-  this._snackBar.open('Login success!!', 'close', {
+successSnackBar( ){
+  this._snackBar.open('Login success!', 'close', {
     horizontalPosition: this.LoginhorizontalPosition,
     verticalPosition: this.LoginverticalPosition
   });

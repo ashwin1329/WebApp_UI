@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   companyName = 'OPTISOL';
   username = 'user';
+  showLogout : boolean = false;
 }

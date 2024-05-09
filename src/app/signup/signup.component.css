@@ -2,8 +2,8 @@
     border: none;
     width: 500px;
     padding: 40px;
-    position: absolute;
-    top: 50%; 
+    position:absolute;
+    top: 60%; 
     left: 50%; 
     transform: translate(-50%,-50%); 
     background: hsla(205, 46%, 30%, 1);

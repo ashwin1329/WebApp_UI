@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomUppercasePipe } from '../custom.pipe';
 import { ApiService } from '../services/api.service';
 import { EmployeeModel } from './employee-dashboard.model';
 import {
@@ -21,7 +22,7 @@ export class EmployeeDashboardComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
-  constructor(private formbuilder: FormBuilder, private api: ApiService, private _snackBar: MatSnackBar) {}
+  constructor(private formbuilder: FormBuilder, private api: ApiService, private _snackBar: MatSnackBar, private customUppercasePipe: CustomUppercasePipe) {}
 
   ngOnInit(): void {
     this.employeeForm = this.formbuilder.group({
@@ -50,37 +51,39 @@ export class EmployeeDashboardComponent implements OnInit {
     this.employeeModelObj.mobile = this.employeeForm.value.mobile;
     this.employeeModelObj.salary = this.employeeForm.value.salary;
     if (this.employeeForm.valid) {
-    this.api.postEmploye(this.employeeModelObj)
-    .subscribe(res=> {
-        console.log(res);
-        this.AddSnackbar();
-        let ref = document.getElementById("cancel");
-        ref?.click();
-        this.employeeForm.reset();
-        this.getAllEmployee();
-    },
-    err=> {
-      console.log(err);
-      alert('Something went wrong');
-    });
+    // this.api.postEmploye(this.employeeModelObj)
+    // .subscribe(res=> {
+    //     console.log(res);
+    //     this.AddSnackbar();
+    //     let ref = document.getElementById("cancel");
+    //     ref?.click();
+    //     this.employeeForm.reset();
+    //     this.getAllEmployee();
+    // },
+    // err=> {
+    //   console.log(err);
+    //   alert('Something went wrong');
+    // });
   }
   
 }
 
   getAllEmployee(){
-    this.api.getEmployee()
-    .subscribe(res=>{
-      this.employeeData = res; 
-    })
+    // this.api.getEmployee()
+    // .subscribe(res=>{
+    //   this.employeeData = res; 
+    // })
   }
 
   deleteEmployeeData(id: number){
-    this.api.deleteEmployee(id)
-    .subscribe(res=>{
-      console.log(res);
-      this.deleteSnackbar();
-      this.getAllEmployee();
-    })
+    // this.api.deleteEmployee(id)
+    // .subscribe(res=>{
+
+    
+    //   console.log(res);
+    //   this.deleteSnackbar();
+    //   this.getAllEmployee();
+    // })
   }
 
   dataEdit(row: any){ 
@@ -88,7 +91,7 @@ export class EmployeeDashboardComponent implements OnInit {
     this.showUpdate = true;
     this.employeeModelObj.id = row.id;
     this.employeeForm.controls['firstName'].setValue(row.firstName);     
-    this.employeeForm.controls['lastName'].setValue(row.lastName);    
+    this.employeeForm.controls['lastName'].setValue(this.customUppercasePipe.transform(row.lastName));    
     this.employeeForm.controls['email'].setValue(row.email);   
     this.employeeForm.controls['mobile'].setValue(row.mobile);   
     this.employeeForm.controls['salary'].setValue(row.salary);   
@@ -110,17 +113,17 @@ export class EmployeeDashboardComponent implements OnInit {
     this.employeeModelObj.mobile = this.employeeForm.value.mobile;   
     this.employeeModelObj.salary = this.employeeForm.value.salary;
     if (this.employeeForm.valid) {
-    this.api.updateEmployee(this.employeeModelObj,this.employeeModelObj.id)
-    .subscribe(res=>{   
-    this.editSnackbar();
+    // this.api.updateEmployee(this.employeeModelObj,this.employeeModelObj.id)
+    // .subscribe(res=>{   
+    // this.editSnackbar();
 
-    let ref = document.getElementById('cancel')  
-    ref?.click(); 
-    this.employeeForm.reset();
+    // let ref = document.getElementById('cancel')  
+    // ref?.click(); 
+    // this.employeeForm.reset();
 
-    this.getAllEmployee();
+    // this.getAllEmployee();
      
-    });
+    // });
     }
   }
 

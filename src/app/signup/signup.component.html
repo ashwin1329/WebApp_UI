@@ -7,27 +7,49 @@
         </div>
         <form [formGroup]="signupForm" (ngSubmit)="signUp()">
           <div class="mb-3">
-            <label for="exampleInputFullname1" class="form-label"
-              >Full name</label
+            <label for="exampleInputFirstname1" class="form-label"
+              >First name</label
             >
             <input
               type="text"
               class="form-control"
-              id="exampleInputFullname1"
-              formControlName="fullName"
+              id="exampleInputFirstname1"
+              formControlName="FirstName"
             />
             <small
-              *ngIf="
-                fullName!.invalid && (fullName!.dirty || fullName!.touched)
-              "
-              class="text-danger"
+                class="form-text text-danger"
+                *ngIf="FirstName!.errors?.['pattern'] && (FirstName!.dirty || FirstName!.touched)"
+              >
+              *Alphabets only allowed
+              </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="FirstName!.errors?.['required'] && (FirstName!.dirty || FirstName!.touched)"
             >
-              <div *ngIf="fullName!.errors?.['required']">
-                *Name is required.
-              </div>
-              <div *ngIf="fullName!.errors?.['pattern']">
-                *Alphabets only allowed
-              </div>
+              *FirstName is required
+            </small>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputLastname1" class="form-label"
+              >Last name</label
+            > 
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputLastname1"
+              formControlName="LastName"
+            />
+            <small
+                class="form-text text-danger"
+                *ngIf="LastName!.errors?.['pattern'] && (LastName!.dirty || LastName!.touched)"
+              >
+              *Alphabets only allowed
+              </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="LastName!.errors?.['required'] && (LastName!.dirty || LastName!.touched)"
+            >
+              *LastName is required
             </small>
           </div>
           <div class="mb-3">
@@ -41,14 +63,12 @@
               formControlName="mobile"
               maxlength="10"
             />
-            <div>
               <small
                 class="form-text text-danger"
                 *ngIf="mobile!.errors?.['pattern'] && (mobile!.dirty || mobile!.touched)"
               >
                 *Mobile number should contain number only
               </small>
-            </div>
             <small
               class="form-text text-danger"
               *ngIf="mobile!.errors?.['required'] && (mobile!.dirty || mobile!.touched)"
@@ -67,21 +87,28 @@
               >Email address</label
             >
             <input
+
+            
               type="email"
               class="form-control"
               id="exampleInputEmail1"
               formControlName="email"
             />
             <small
-              *ngIf="email!.invalid && (email!.dirty || email!.touched)"
-              class="text-danger"
+                class="form-text text-danger"
+                *ngIf="email!.errors?.['pattern'] && (email!.dirty || email!.touched)"
+              >
+              *Email should be valid
+              </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="email!.errors?.['required'] && (email!.dirty || email!.touched)"
             >
-              <div *ngIf="email!.errors?.['required']">*Email is required.</div>
-              <div *ngIf="email!.errors?.['pattern']">
-                *Email should be valid
-              </div>
+              *Email is required
             </small>
           </div>
+
+          
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label"
               >Password</label
@@ -91,21 +118,75 @@
               class="form-control"
               id="exampleInputPassword1"
               formControlName="password"
+              maxlength="15"
             />
             <div
               class="form-text text-danger"
               *ngIf="password!.errors?.['required'] && (password!.dirty || password!.touched)"
             >
-              Password is Required
+              *Password is Required
             </div>
 
             <div
               class="form-text text-danger"
-              *ngIf="password!.errors?.['minlength'] || password!.errors?.['maxlength'] && (password!.
+              *ngIf="password!.errors?.['minlength'] && (password!.
               dirty || password!.touched)"
             >
-              Password should be at least 6 and at the max 15 characters long.
+              *Password should be minimum 8 and maximum 15 characters long.
             </div>
+            <div
+              class="form-text text-danger"
+              *ngIf="password!.errors?.['Ucase'] && (password!.
+              dirty || password!.touched)"
+            >
+              *Password should contain UpperCase
+            </div>
+            <div
+              class="form-text text-danger"
+              *ngIf="password!.errors?.['Lcase'] && (password!.
+              dirty || password!.touched)"
+            >
+              *Password should contain LowerCase
+            </div>
+            <div
+              class="form-text text-danger"
+              *ngIf="password!.errors?.['SpecialCharecter'] && (password!.
+              dirty || password!.touched)"
+            >
+              *Password should contain SpecialCharacter
+            </div>
+            <div
+              class="form-text text-danger"
+              *ngIf="password!.errors?.['number'] && (password!.
+              dirty || password!.touched)"
+            >
+              *Password should contain Number
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputcpassword1" class="form-label"
+              >Confirm password</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputcpassword1"
+              formControlName="cpassword"
+            />
+            <div
+              class="form-text text-danger"
+              *ngIf="cpassword!.errors?.['required'] && (cpassword!.dirty || cpassword!.touched)"
+            >
+              *Confirm password is required
+            </div>
+            <div
+              class="form-text text-danger"
+              *ngIf="cpassword!.errors?.['pMismatch'] && (cpassword!.
+              dirty || cpassword!.touched)"
+            >
+              *Password doesn't match
+            </div>
+            
           </div>
           <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>

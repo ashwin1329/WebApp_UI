@@ -31,7 +31,7 @@
     <tr *ngFor="let row of employeeData">
       <td>{{row.id}}</td>
       <td>{{ row.firstName }}</td>
-      <td>{{ row.lastName }}</td>
+      <td>{{ row.lastName | customUppercase  }}</td>
       <td>{{ row.email }}</td>
       <td>{{ row.mobile }}</td>
       <td>{{ row.salary }}</td>
