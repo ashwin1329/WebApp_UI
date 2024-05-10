@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomUppercasePipe } from '../custom.pipe';
-import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 import { EmployeeModel } from './employee-dashboard.model';
 import {
   MatSnackBar,
@@ -22,7 +22,7 @@ export class EmployeeDashboardComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
-  constructor(private formbuilder: FormBuilder, private api: ApiService, private _snackBar: MatSnackBar, private customUppercasePipe: CustomUppercasePipe) {}
+  constructor(private formbuilder: FormBuilder, private auth: AuthService, private _snackBar: MatSnackBar, private customUppercasePipe: CustomUppercasePipe) {}
 
   ngOnInit(): void {
     this.employeeForm = this.formbuilder.group({
@@ -51,7 +51,7 @@ export class EmployeeDashboardComponent implements OnInit {
     this.employeeModelObj.mobile = this.employeeForm.value.mobile;
     this.employeeModelObj.salary = this.employeeForm.value.salary;
     if (this.employeeForm.valid) {
-    // this.api.postEmploye(this.employeeModelObj)
+    // this.auth.postEmploye(this.employeeModelObj)
     // .subscribe(res=> {
     //     console.log(res);
     //     this.AddSnackbar();

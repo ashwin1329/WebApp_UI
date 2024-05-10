@@ -12,12 +12,12 @@ import { hasLowerCase } from '../Validators/hasLowerCase';
 import { hasSpecialCharecter } from '../Validators/hasSpecialCharecter';
 import { hasNumber } from '../Validators/hasNumber';
 import { passwordMatchValidator } from '../Validators/passwordMatchValidator';
-import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css',
+  styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     public _snackBar: MatSnackBar,
-    private auth : ApiService
+    private auth : AuthService
   ) {}
 
   ngOnInit(): void {
@@ -39,11 +39,7 @@ export class SignupComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
       mobile: ['', [Validators.required, Validators.pattern("[0-9]*"), Validators.minLength(10)]],
       password: ['',[Validators.required, Validators.minLength(6), hasUpperCase(), hasLowerCase(), hasSpecialCharecter(), hasNumber()]],
-      cpassword: ['',[Validators.required]]
-
-    },
-    {
-      validator: passwordMatchValidator()
+      cpassword: ['', [Validators.required, passwordMatchValidator('password')]]      
     }
   );
   }

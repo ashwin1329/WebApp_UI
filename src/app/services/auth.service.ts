@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { environment } from '../Environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 
-export class ApiService {
+export class AuthService {
 
-  private baseUrl: string = "https://localhost:7134/api/User/"
+  private baseUrl = environment.baseUrl;
   constructor(private http: HttpClient) { }
 
   signUp(userObj:any){

@@ -7,7 +7,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private _snackBar: MatSnackBar,
-    private auth: ApiService
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {

@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <div class="card">
         <div class="text-center">
-          <h1>Sign Up</h1>
+          <h1>Sign Up</h1> 
         </div>
         <form [formGroup]="signupForm" (ngSubmit)="signUp()">
           <div class="mb-3">
@@ -179,6 +179,7 @@
             >
               *Confirm password is required
             </div>
+            
             <div
               class="form-text text-danger"
               *ngIf="cpassword!.errors?.['pMismatch'] && (cpassword!.
