@@ -23,6 +23,7 @@ export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  emailExistsError: string | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -62,7 +63,7 @@ export class SignupComponent implements OnInit {
           this.router.navigate(['login']);
         }),
         error:(err=>{
-          alert('Something went wrong');
+          this.emailExistsError = err.error;
         })
       })
 
@@ -86,6 +87,10 @@ export class SignupComponent implements OnInit {
     //     }
     //   );
     }
+  }
+
+  resetEmailError() {
+    this.emailExistsError = null;
   }
 
   successSnackBar(){

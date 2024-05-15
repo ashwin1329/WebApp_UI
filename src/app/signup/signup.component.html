@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <div class="card">
         <div class="text-center">
-          <h1>Sign Up</h1> 
+          <h1>Sign Up</h1>
         </div>
         <form [formGroup]="signupForm" (ngSubmit)="signUp()">
           <div class="mb-3">
@@ -17,11 +17,11 @@
               formControlName="FirstName"
             />
             <small
-                class="form-text text-danger"
-                *ngIf="FirstName!.errors?.['pattern'] && (FirstName!.dirty || FirstName!.touched)"
-              >
+              class="form-text text-danger"
+              *ngIf="FirstName!.errors?.['pattern'] && (FirstName!.dirty || FirstName!.touched)"
+            >
               *Alphabets only allowed
-              </small>
+            </small>
             <small
               class="form-text text-danger"
               *ngIf="FirstName!.errors?.['required'] && (FirstName!.dirty || FirstName!.touched)"
@@ -32,7 +32,7 @@
           <div class="mb-3">
             <label for="exampleInputLastname1" class="form-label"
               >Last name</label
-            > 
+            >
             <input
               type="text"
               class="form-control"
@@ -40,11 +40,11 @@
               formControlName="LastName"
             />
             <small
-                class="form-text text-danger"
-                *ngIf="LastName!.errors?.['pattern'] && (LastName!.dirty || LastName!.touched)"
-              >
+              class="form-text text-danger"
+              *ngIf="LastName!.errors?.['pattern'] && (LastName!.dirty || LastName!.touched)"
+            >
               *Alphabets only allowed
-              </small>
+            </small>
             <small
               class="form-text text-danger"
               *ngIf="LastName!.errors?.['required'] && (LastName!.dirty || LastName!.touched)"
@@ -63,12 +63,12 @@
               formControlName="mobile"
               maxlength="10"
             />
-              <small
-                class="form-text text-danger"
-                *ngIf="mobile!.errors?.['pattern'] && (mobile!.dirty || mobile!.touched)"
-              >
-                *Mobile number should contain number only
-              </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="mobile!.errors?.['pattern'] && (mobile!.dirty || mobile!.touched)"
+            >
+              *Mobile number should contain number only
+            </small>
             <small
               class="form-text text-danger"
               *ngIf="mobile!.errors?.['required'] && (mobile!.dirty || mobile!.touched)"
@@ -87,28 +87,29 @@
               >Email address</label
             >
             <input
-
-            
               type="email"
               class="form-control"
               id="exampleInputEmail1"
               formControlName="email"
+              (input)="resetEmailError()"
             />
             <small
-                class="form-text text-danger"
-                *ngIf="email!.errors?.['pattern'] && (email!.dirty || email!.touched)"
-              >
+              class="form-text text-danger"
+              *ngIf="email!.errors?.['pattern'] && (email!.dirty || email!.touched)"
+            >
               *Email should be valid
-              </small>
+            </small>
             <small
               class="form-text text-danger"
               *ngIf="email!.errors?.['required'] && (email!.dirty || email!.touched)"
             >
               *Email is required
             </small>
+            <small class="form-text text-danger" *ngIf="emailExistsError">
+              {{ emailExistsError }}
+            </small>
           </div>
 
-          
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label"
               >Password</label
@@ -179,7 +180,7 @@
             >
               *Confirm password is required
             </div>
-            
+
             <div
               class="form-text text-danger"
               *ngIf="cpassword!.errors?.['pMismatch'] && (cpassword!.
@@ -187,7 +188,6 @@
             >
               *Password doesn't match
             </div>
-            
           </div>
           <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>
